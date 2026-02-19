@@ -96,7 +96,7 @@ const RSSManager: React.FC<RSSManagerProps> = ({
             </div>
 
             {/* List Feeds */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm overflow-x-auto">
                 <table className="w-full text-left">
                     <thead className="bg-gray-50 dark:bg-gray-700/50 text-gray-500 font-semibold uppercase text-xs">
                         <tr>
