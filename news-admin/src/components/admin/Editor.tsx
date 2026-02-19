@@ -29,23 +29,23 @@ const Editor: React.FC<EditorProps> = ({
                 </h2>
             </div>
 
-            <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-6">
+            <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4 md:p-6">
                 <div className="flex items-center gap-2 mb-4 text-purple-700 dark:text-purple-300">
                     <Bot size={24} />
                     <h2 className="font-bold">AI Assistant</h2>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                     <textarea
                         className="flex-1 p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm focus:ring-2 focus:ring-purple-500 outline-none"
                         placeholder="Enter a topic (e.g., 'SpaceX Launch') to write from scratch, OR paste a rough draft to polish..."
-                        rows={2}
+                        rows={3}
                         value={aiPrompt}
                         onChange={(e) => setAiPrompt(e.target.value)}
                     />
                     <button
                         onClick={handleAiGenerate}
                         disabled={isGeneratingAi}
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 md:py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 w-full md:w-auto"
                     >
                         {isGeneratingAi ? <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" /> : <Sparkles size={18} />}
                         Generate
@@ -53,7 +53,7 @@ const Editor: React.FC<EditorProps> = ({
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-8 space-y-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 md:p-8 space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="col-span-2">
                         <label className="label block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Headline</label>
@@ -91,14 +91,14 @@ const Editor: React.FC<EditorProps> = ({
                         </div>
                         {editItem.imageUrl && <img src={editItem.imageUrl} alt="Preview" className="mt-4 h-40 rounded-lg object-cover border border-gray-200" />}
                     </div>
-                    <div className="col-span-2 flex gap-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <div className="col-span-2 flex flex-col md:flex-row gap-4 md:gap-6 pt-4 border-t border-gray-100 dark:border-gray-700">
                         <label className="flex items-center gap-2 cursor-pointer select-none"><input type="checkbox" checked={editItem.isBreaking} onChange={e => setEditItem({ ...editItem, isBreaking: e.target.checked })} className="w-5 h-5 rounded text-brand-600 focus:ring-brand-500" /><span className="font-medium text-red-600">Mark as Breaking</span></label>
                         <label className="flex items-center gap-2 cursor-pointer select-none"><input type="checkbox" checked={editItem.isFeatured} onChange={e => setEditItem({ ...editItem, isFeatured: e.target.checked })} className="w-5 h-5 rounded text-brand-600 focus:ring-brand-500" /><span className="font-medium text-gray-700 dark:text-gray-300">Feature on Homepage</span></label>
                     </div>
                 </div>
-                <div className="flex justify-end gap-4 pt-6">
-                    <button onClick={onCancel} className="px-6 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700">Cancel</button>
-                    <button onClick={handleSave} disabled={isLoading} className="px-8 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-bold shadow-lg shadow-brand-500/30 flex items-center gap-2">
+                <div className="flex flex-col-reverse md:flex-row justify-end gap-3 md:gap-4 pt-6">
+                    <button onClick={onCancel} className="w-full md:w-auto px-6 py-3 md:py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700">Cancel</button>
+                    <button onClick={handleSave} disabled={isLoading} className="w-full md:w-auto px-8 py-3 md:py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-bold shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
                         {isLoading ? <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" /> : <><Save size={18} /> {editingId ? 'Update News' : 'Publish News'}</>}
                     </button>
                 </div>
