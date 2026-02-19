@@ -20,7 +20,7 @@ const SubscriberList: React.FC<SubscriberListProps> = ({ subscribers }) => {
                 <p className="text-gray-500">List of users who have subscribed to the newsletter.</p>
             </header>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden overflow-x-auto">
                 <table className="w-full text-left">
                     <thead className="bg-gray-50 dark:bg-gray-700/50 text-gray-500 font-semibold uppercase text-xs">
                         <tr>
