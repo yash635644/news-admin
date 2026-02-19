@@ -218,7 +218,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, isDark, toggleDark }) =
                     ].map(item => (
                         <button
                             key={item.id}
-                            onClick={() => setActiveTab(item.id as Tab)}
+                            onClick={() => {
+                                setActiveTab(item.id as Tab);
+                                setIsMobileMenuOpen(false);
+                            }}
                             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${activeTab === item.id ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 font-bold' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
                         >
                             {item.icon} {item.label}
