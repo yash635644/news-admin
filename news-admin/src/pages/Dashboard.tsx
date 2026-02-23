@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Plus, BarChart3, List, Rss, Menu, X, Check, Sun, Moon, LogOut } from 'lucide-react';
+import { Shield, Plus, BarChart3, List, Rss, Menu, X, Check, Sun, Moon, LogOut, Mail } from 'lucide-react';
 
 // Services & Types
 import { api } from '../services/api';
@@ -11,6 +11,7 @@ import NewsTable from '../components/admin/NewsTable';
 import Editor from '../components/admin/Editor';
 import RSSManager from '../components/admin/RSSManager';
 import SubscriberList from '../components/admin/SubscriberList';
+import Inbox from '../components/admin/Inbox';
 
 interface DashboardProps {
     onLogout: () => void;
@@ -18,7 +19,7 @@ interface DashboardProps {
     toggleDark: () => void;
 }
 
-type Tab = 'overview' | 'news-list' | 'add-news' | 'sources' | 'subscribers';
+type Tab = 'overview' | 'news-list' | 'add-news' | 'sources' | 'subscribers' | 'inbox';
 
 const Dashboard: React.FC<DashboardProps> = ({ onLogout, isDark, toggleDark }) => {
     // ---/ UI State /---
@@ -211,6 +212,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, isDark, toggleDark }) =
                 <nav className="flex-1 p-4 space-y-2">
                     {[
                         { id: 'overview', icon: <BarChart3 size={20} />, label: 'Overview' },
+                        { id: 'inbox', icon: <Mail size={20} />, label: 'Inbox' },
                         { id: 'news-list', icon: <List size={20} />, label: 'Manage News' },
                         { id: 'add-news', icon: <Plus size={20} />, label: 'Add News' },
                         { id: 'sources', icon: <Rss size={20} />, label: 'RSS Manager' },
@@ -264,6 +266,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout, isDark, toggleDark }) =
                 {activeTab === 'add-news' && <Editor editItem={editItem} setEditItem={setEditItem} editingId={editingId} aiPrompt={aiPrompt} setAiPrompt={setAiPrompt} isGeneratingAi={isGeneratingAi} handleAiGenerate={handleAiGenerate} handleSave={handleSave} isLoading={isLoading} onCancel={() => setActiveTab('news-list')} />}
                 {activeTab === 'sources' && <RSSManager rssFeeds={rssFeeds} newFeed={newFeed} setNewFeed={setNewFeed} isAddingFeed={isAddingFeed} handleAddFeed={handleAddFeed} handleDeleteFeed={handleDeleteFeed} />}
                 {activeTab === 'subscribers' && <SubscriberList subscribers={subscribers} />}
+                {activeTab === 'inbox' && <Inbox />}
             </main>
         </div>
     );
