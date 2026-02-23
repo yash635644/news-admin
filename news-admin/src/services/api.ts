@@ -335,5 +335,34 @@ export const api = {
     return {
       total: 0, aiCount: 0, breakingCount: 0, featuredCount: 0, originals: 0, live: 0, feeds: 0
     };
+  },
+
+  getContactMessages: async () => {
+    if (API_URL) {
+      const res = await fetch(`${API_URL}/api/contact`);
+      if (!res.ok) throw new Error('Failed to fetch contact messages');
+      return await res.json();
+    }
+    return [];
+  },
+
+  markContactRead: async (id: string) => {
+    if (API_URL) {
+      const res = await fetch(`${API_URL}/api/contact/${id}/read`, {
+        method: 'PUT'
+      });
+      if (!res.ok) throw new Error('Failed to mark read');
+      return await res.json();
+    }
+  },
+
+  deleteContactMessage: async (id: string) => {
+    if (API_URL) {
+      const res = await fetch(`${API_URL}/api/contact/${id}`, {
+        method: 'DELETE'
+      });
+      if (!res.ok) throw new Error('Failed to delete message');
+      return true;
+    }
   }
 };
